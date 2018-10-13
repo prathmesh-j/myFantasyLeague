@@ -2,6 +2,8 @@ const User = require('../../models/User');
 const UserSession = require('../../models/UserSession');
 
 module.exports  = (app) => {
+
+    // New User Signup
     app.post('/api/account/signup', (req, res, next) => {
         const { body } = req;
         const { firstName, lastName, password } = body;
@@ -71,11 +73,10 @@ module.exports  = (app) => {
         });
     });
 
-
-
+    // Existing User SignIn
     app.post('/api/account/signin', (req, res, next) => {
-        const { body } = body;
-        const { passowrd } = body;
+        const { body } = req;
+        const { password } = body;
         let { email } = body;
 
         if(!email) {
@@ -120,7 +121,7 @@ module.exports  = (app) => {
 
             // Valid User
             const userSession = new UserSession();
-            userSession.userId = user._id;
+            userSession.userId = currentUser._id;
             userSession.save((err, doc) => {
                 if(err) {
                     return res.send({
@@ -135,6 +136,62 @@ module.exports  = (app) => {
                     token: doc._id
                 });
             });
+        });
+    });
+
+    // Verify User Session
+    app.get('/api/account/verify/', (req, res, next) => {
+        const { query } = req;
+        const { token } = query;
+
+        UserSession.find({
+            _id: token,
+            isDeleted: false
+        }, (err, sessions) => {
+            if(err) {
+                return res.send({
+                    success: false,
+                    Message: 'Error: Server error!'
+                });
+            }
+            if(sessions.length != 1) {
+                return res.send({
+                    success: false,
+                    Message: 'Error: Invalid !'
+                });
+            } else {
+                return res.send({
+                    success: true,
+                    Message: 'Session good!'
+                });
+            }
+        });
+    });
+
+    // Logout 
+    app.get('/api/account/logout/', (req, res, next) => {
+        const { query } = req;
+        const { token } = query;
+
+        UserSession.findOneAndUpdate({
+            _id: token,
+            isDeleted: false
+        }, {
+            $set: {
+                isDeleted: true
+            }
+        }, null, (err, sessions) => {
+            if(err) {
+                return res.send({
+                    success: false,
+                    Message: 'Error: Server error!'
+                });
+            } else {
+                return res.send({
+                    success: true,
+                    Message: 'Logged out!'
+                });
+            }
         });
     });
 }
