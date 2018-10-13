@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+@import 'vendor/normalize';
+
+
+/* allow room for 3 columns */
+ul
+{
+  width: auto;
+}  /* float & allow room for the widest item */
+ul li
+{
+  float: left;
+  width: 25em;
+}  /* stop the float */
+br
+{
+  clear: left;
+}  /* separate the list from subsequent markup */
+div.wrapper
+{
+  margin-bottom: 1em;
+}
