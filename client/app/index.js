@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 
 import App from './components/App/App';
+import Login from './components/Login/Login';
 import NotFound from './components/App/NotFound';
 
 import Home from './components/Home/Home';

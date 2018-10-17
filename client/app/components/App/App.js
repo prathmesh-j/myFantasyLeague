@@ -31,7 +31,7 @@ class App extends React.Component {
 
     return (
       <Provider store={store}>
-        <div>
+        <div className="start">
           <h1>My Fantasy Game!</h1>
             <select
               name="country"

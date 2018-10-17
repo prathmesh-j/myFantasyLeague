@@ -21,3 +21,78 @@ div.wrapper
 {
   margin-bottom: 1em;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+.menu-container {
+  color: #fff;
+  background-color: #5995DA;  /* Blue */
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;    /* Add this */
+}
+
+.menu {
+  border: 1px solid #fff;  /* For debugging */
+  width: 900px;
+  border: 1px solid #fff;
+  width: 900px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links {
+  border: 1px solid #fff;  /* For debugging */
+  display: flex;
+  justify-content: flex-end;
+}
+
+.login {
+  margin-left: 20px;
+}
+
+.header-container {
+  color: #5995DA;
+  background-color: #D6E9FE;
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  width: 900px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.photo-grid-container {
+  display: flex;
+  justify-content: center;
+}
+
+.photo-grid {
+  width: 900px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.photo-grid-item {
+  border: 1px solid #fff;
+  width: 300px;
+  height: 180px;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 10px;
+}

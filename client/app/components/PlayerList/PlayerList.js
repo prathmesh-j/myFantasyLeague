@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { addContact, loadContacts, deleteContact } from "../../../../server/actions";
 import PropTypes from 'prop-types';
 import 'whatwg-fetch';
+import  Player  from '../Player/Player'
 
 class PlayerList extends React.Component {
   static defaultProps = {
@@ -43,32 +44,15 @@ class PlayerList extends React.Component {
     } = this.props;
 
     return (
-      <div className="wrapper">
-      <ul style={{ listStyleType: "none", padding: 0 }}>
+      <div className='photo-grid'>
         {contacts.map(contact => (
-          <li
-            key={contact.id}
-            style={{
-              background: contactsWithErrors[contact.id] ? "red" : "",
-              opacity: contactsBeingDeleted[contact.id] ? "0.25" : ""
-            }}
+          <Player contact={contact} 
+                  contactsWithErrors={contactsWithErrors}
+                  contactsBeingDeleted={contactsWithErrors}
           >
-            <img
-              src={"https://iplstatic.s3.amazonaws.com/players/210/" + contact.id + ".png"}
-              height={contactsWithErrors[contact.id] ? "400" : "150"}
-            />{" "}
-            {contact.fullName}{" "}
-            {contactsWithErrors[contact.id] ? (
-              <p>{contactsWithErrors[contact.id]}</p>
-            ) : (
-              <button onClick={() => this.addPlayer(contact)}>
-                Select
-              </button>
-            )}
-          </li>
+          </Player>
         ))}
-      </ul>
-    </div>
+      </div>
     );
   }
 }
