@@ -182,6 +182,7 @@ module.exports  = (app) => {
             }
         }, null, (err, sessions) => {
             if(err) {
+                console.log(err);
                 return res.send({
                     success: false,
                     Message: 'Error: Server error!'

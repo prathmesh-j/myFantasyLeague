@@ -8,16 +8,16 @@ class Player extends React.Component {
   render() {
     console.log(this.props);
      return (
-      <div class='photo-grid-item' style={{backgroundColor:'aliceblue',
+      <div className='photo-grid-item' style={{backgroundColor:'aliceblue',
       borderRadius:'20px', borderStyle:'outset'}}>
-        <div class="row">
-          <div class="column">
+        <div className="row">
+          <div className="column">
             <img
               src={"https://iplstatic.s3.amazonaws.com/players/210/" + this.props.contact.id + ".png"}
               height={this.props.contactsWithErrors[this.props.contact.id] ? "300" : "150"}
             />
           </div>
-          <div class="column">
+          <div className="column">
             {this.props.contact.fullName}
             {this.props.contact.shortName}<br/>
             {this.props.contact.nationality}<br/>
