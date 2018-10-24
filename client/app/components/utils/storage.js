@@ -1,4 +1,6 @@
 export function getFromStorage(key) {
+    // localStorage.clear();
+
     if(!key) {
         return null;
     }

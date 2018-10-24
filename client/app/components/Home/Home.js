@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Team from '../Team/Team';
+import League from '../League/League';
 import 'whatwg-fetch';
 import  {
   getFromStorage,
@@ -234,7 +235,6 @@ class Home extends Component {
     }
     if(!token) {
       return (
-
         <div class="container">
           <input type="radio" name="tab" id="signin" checked="checked"/>
           <input type="radio" name="tab" id="register"/>
@@ -297,69 +297,15 @@ class Home extends Component {
                 </label>
               </div>
             </div>
-        // <div className='login-container'>
-        //   <div className='login-item'>
-        //     <div className='signin'>
-        //       {
-        //         (signInError) ? (
-        //           <p>{signInError}</p>
-        //         ) : null
-        //       }
-        //       <p>Sign In</p>
-        //       <input type='email' 
-        //             placeholder='Email' 
-        //             value={signInEmail}
-        //             onChange={this.onTextBoxChangeSignInEmail}
-        //       /><br/>
-        //       <input type='password' 
-        //             placeholder='Password' 
-        //             value={signInPassword}
-        //             onChange={this.onTextBoxChangeSignInPassword}
-        //       /><br/>
-        //       <button onClick={this.onSignIn}>Sign In</button>
-        //     </div>
-        //     <br/>
-        //     <br/>
-        //     <br/>
-        //     <div className='signup'>
-        //     {
-        //         (signUperror) ? (
-        //           <p>{signUperror}</p>
-        //         ) : null
-        //       }
-        //     <p>Sign Up</p>
-        //       <input type='text' 
-        //             placeholder='First Name' 
-        //             value={signUpFirstName}
-        //             onChange={this.onTextBoxChangeSignUpFirstName}
-        //       /><br/>
-        //       <input type='text' 
-        //             placeholder='Last Name' 
-        //             value={signUpLastName}
-        //             onChange={this.onTextBoxChangeSignUpLastName}
-        //       /><br/>
-        //       <input type='email' 
-        //             placeholder='Email' 
-        //             value={signUpEmail}
-        //             onChange={this.onTextBoxChangeSignUpEmail}
-        //       /><br/>
-        //       <input type='password' 
-        //             placeholder='Password' 
-        //             value={signUpPassword}
-        //             onChange={this.onTextBoxChangeSignUpPassword}
-        //       /><br/>
-        //       <button onClick={this.onSignUp}>Sign Up</button>
-        //     </div>
-        //   </div>
-        // </div>
       )
     }
 
     return (
       <div>
-        <p>Account</p>
-        <Team />
         <button onClick={this.onLogout}> Logout</button>
+        <p>Account</p>
+        {/* <Team /> */}
+        < League />
       </div>
     );
   }
