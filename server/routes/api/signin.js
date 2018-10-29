@@ -133,7 +133,8 @@ module.exports  = (app) => {
                 return res.send({
                     success: true,
                     Message: 'Sucess: Valid login!',
-                    token: doc._id
+                    token: doc._id,
+                    currentUserId: currentUser._id
                 });
             });
         });

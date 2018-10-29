@@ -28,4 +28,36 @@ module.exports = (app) => {
             }
         });
     });
+
+
+
+    app.post('/api/league/create', function (req, res, next) {
+        const { body } = req;
+        const { name, createdOn, createdBy } = body;
+
+        const newLeague = new League();
+        newLeague.name = name;
+        newLeague.createdOn = createdOn;
+        newLeague.createdBy = createdBy;
+        newLeague.members = {}
+
+        console.log(name);
+        console.log(createdOn);
+        console.log(createdBy);
+        
+        newLeague.save((err, league) => {
+            if(err) {
+                return res.send({
+                    success: false,
+                    Message: 'Error: Server error!'
+                });
+            }
+            return res.send({
+                success: true,
+                Message: 'New league created!'
+            });
+        });
+      });
+
+
 }

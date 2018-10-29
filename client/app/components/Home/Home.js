@@ -21,7 +21,8 @@ class Home extends Component {
       signUpFirstName: '',
       signUpLastName: '',
       signUpEmail: '',
-      signUpPassword: ''
+      signUpPassword: '',
+      currentUserId: ''
     };
 
     this.onTextBoxChangeSignInEmail = this.onTextBoxChangeSignInEmail.bind(this);
@@ -170,6 +171,7 @@ class Home extends Component {
           signInEmail: '',
           signInPassword: '',
           token: json.token,
+          currentUserId: json.currentUserId
         });
       } else {
         this.setState({
@@ -305,7 +307,7 @@ class Home extends Component {
         <button onClick={this.onLogout}> Logout</button>
         <p>Account</p>
         {/* <Team /> */}
-        < League />
+        < League currentUserId={this.state.currentUserId}/>
       </div>
     );
   }
