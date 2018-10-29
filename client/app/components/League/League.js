@@ -10,32 +10,46 @@ class League extends React.Component {
             input: '',
             isNew: false,
             isLoaded: false,
+            isExisting: false,
+            showTeam: false
         };
       
         this.findLeague = this.findLeague.bind(this);      
         this.handleChange = this.handleChange.bind(this);
         this.createLeague = this.createLeague.bind(this);
+        this.handleCreateNewLeague = this.handleCreateNewLeague.bind(this);
+        this.handleJoinLeague = this.handleJoinLeague.bind(this);
     }
 
     handleChange(e) {
         this.setState({input: e.target.value});
-    }  
+    }
+
+    handleCreateNewLeague() {
+        this.setState({
+            isNew: true,
+
+        });
+    }
+
+    handleJoinLeague() {
+        this.setState({
+            isExisting: true,
+
+        })
+    }
 
     findLeague() {
-        fetch('api/league/search?id=' + this.state.input)
+        fetch('api/league/search?name=' + this.state.input)
         .then(res => res.json())
         .then(json => {
             if(json.success) {
             this.setState({
                 isLoaded: true,
-                isNew: true,
-                input: ''
             });
             } else {
                 this.setState({
-                    isLoaded: false,
-                    isNew: false,
-                    input:''
+                    isLoaded: false
                 });
             }
         })
@@ -56,13 +70,10 @@ class League extends React.Component {
           .then(json => {
             if(json.success) {
               this.setState({
-                isNew: true,
                 isLoaded: true,
-                input: ''
               });
             } else {
               this.setState({
-                isNew: false,
                 isLoaded: false
               });
             }
@@ -70,42 +81,57 @@ class League extends React.Component {
     }
 
     render() {
-        if(this.state.isLoaded){
-            return (<Team />);
-        } else {
-            if(!this.state.isNew) {
-                // Create a new league
-                return (
+
+        if(!this.state.isNew && !this.state.isExisting) {
+            return(
+                <div>
+                    <input className='new-league'
+                           type='button'
+                           value='Create New League'
+                           onClick={this.handleCreateNewLeague}
+                    />
+                    <input className='join-league'
+                           type='button'
+                           value='Join League'
+                           onClick={this.handleJoinLeague}
+                    />
+                </div>
+            )
+        }
+
+        if(this.state.isNew && !this.state.isLoaded) {
+            // Create a new league
+            return (
+                <div>
+                    <span>This is a new League</span>
                     <div>
-                        <span>This is a new League</span>
-                        <div>
-                            <input className='league-name'
-                                   type='text'
-                                   placeholder='Name your league'
-                                   onChange={this.handleChange}/>
-                            <input type="button" 
-                                   value="Create" 
-                                   onClick={this.createLeague}/>
-                        </div>
-                    </div>
-                );
-            } else {
-                // Join an existing League
-                return (
-                    <div>
-                        <input placeholder='League...' 
-                               className='js-search' 
-                               type="text"
+                        <input className='league-name'
+                               type='text'
+                               placeholder='Name your league'
                                onChange={this.handleChange}/>
                         <input type="button" 
-                               value="Search" 
-                               onClick={this.findLeague}/>
+                               value="Create" 
+                               onClick={this.createLeague}/>
                     </div>
-                );
-            }
+                </div>
+            );
+        } else if(this.state.isExisting && !this.state.isLoaded) {
+            // Join an existing League
+            return (
+                <div>
+                    <input placeholder='League...' 
+                           className='search-league' 
+                           type="text"
+                           onChange={this.handleChange}/>
+                    <input type="button" 
+                           value="Search" 
+                           onClick={this.findLeague}/>
+                </div>
+            );
         }
-    }
 
+        return (<Team />);
+    }
 }
 
 League.defaultProps = {

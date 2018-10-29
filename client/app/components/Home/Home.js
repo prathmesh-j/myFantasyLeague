@@ -237,13 +237,13 @@ class Home extends Component {
     }
     if(!token) {
       return (
-        <div class="container">
+        <div className="container">
           <input type="radio" name="tab" id="signin" checked="checked"/>
           <input type="radio" name="tab" id="register"/>
-              <div class="pages">
-                <div class="page">
-                  <div class="input">
-                    <div class="title"> USERNAME</div>
+              <div className="pages">
+                <div className="page">
+                  <div className="input">
+                    <div className="title"> USERNAME</div>
                     <input type='email' 
                           className='text'
                                 placeholder='Email' 
@@ -251,8 +251,8 @@ class Home extends Component {
                                 onChange={this.onTextBoxChangeSignInEmail}
                     />
                   </div>
-                  <div class="input">
-                    <div class="title"> PASSWORD</div>
+                  <div className="input">
+                    <div className="title"> PASSWORD</div>
                     <input type='password'
                           className='text' 
                                 placeholder='Password' 
@@ -260,14 +260,14 @@ class Home extends Component {
                                 onChange={this.onTextBoxChangeSignInPassword}
                           />
                   </div>
-                  <div class="input">
+                  <div className="input">
                     {/* <input type="submit" value="ENTER"/> */}
                     <input type='button' className='btn_signin' onClick={this.onSignIn} value='Sign In'/>
                   </div>
                 </div>
-                <div class="page signup">
-                  <div class="input">
-                    <div class="title"> NAME</div>
+                <div className="page signup">
+                  <div className="input">
+                    <div className="title"> NAME</div>
                     <input type='text' 
                           className='text'
                                 placeholder='First Name' 
@@ -275,8 +275,8 @@ class Home extends Component {
                                 onChange={this.onTextBoxChangeSignUpFirstName}
                     />
                   </div>
-                  <div class="input">
-                    <div class="title"> EMAIL</div>
+                  <div className="input">
+                    <div className="title"> EMAIL</div>
                     <input type='email' 
                           className='text'
                                 placeholder='Email' 
@@ -284,18 +284,18 @@ class Home extends Component {
                                 onChange={this.onTextBoxChangeSignUpEmail}
                           />
                   </div>
-                  <div class="input">
+                  <div className="input">
                     {/* <input type="submit" value="SIGN ME UP!"/> */}
                     <button className='btn_signup' onClick={this.onSignUp}>Sign Up</button>
                   </div>
                 </div>
               </div>
-              <div class="tabs">
-                <label class="tab" for="signin">
-                  <div class="text">Sign In</div>
+              <div className="tabs">
+                <label className="tab" for="signin">
+                  <div className="text">Sign In</div>
                 </label>
-                <label class="tab" for="register">
-                  <div class="text">Register</div>
+                <label className="tab" for="register">
+                  <div className="text">Register</div>
                 </label>
               </div>
             </div>

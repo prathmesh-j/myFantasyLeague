@@ -4,10 +4,10 @@ module.exports = (app) => {
     app.get('/api/league/search/', (req, res, next) => {
 
         const { query } = req;
-        const { id } = query;
+        const { name } = query;
     
         League.find({
-            id: id,
+            name: name,
         }, (err, sessions) => {
             if(err) {
                 return res.send({
@@ -18,7 +18,8 @@ module.exports = (app) => {
             if(sessions.length != 1) {
                 return res.send({
                     success: false,
-                    Message: 'Error: Invalid !'
+                    Message: 'Error: Invalid !',
+                    sessions: sessions
                 });
             } else {
                 return res.send({
